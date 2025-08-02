@@ -2,6 +2,7 @@ var grid_size = 26;
 var screenSize = $(window).width();
 var sliderIndex = 0;
 var rightBound = document.getElementById('xor-ciphers-table').offsetWidth - document.getElementById('text-table').offsetWidth;
+var messageInitialized = false;
 
 document.getElementById("ciphertext1").addEventListener('input', function (evt) {
   updateXORTable();
@@ -128,14 +129,6 @@ function updateSliderPos() {
   $(".box").draggable({containment: [leftBound, 0, rightLimit, 0]});
 }
 
-function resetMessage1() {
-  document.getElementById("message1").value = "Message 1 Results";
-}
-
-function resetMessage2() {
-  document.getElementById("message2").value = "Message 2 Results";
-}
-
 function correctSegment(messageNumber) {
   maxlength = document.getElementById("ciphertextxorresult").value.length / 2;
   cribsegment = document.getElementById("cribword").value;
@@ -143,13 +136,14 @@ function correctSegment(messageNumber) {
   var segment = document.getElementById("crib-result").textContent;
   var message1, message2;
   
-  if (document.getElementById("message1").value == "Message 1 Results") {
+  if (!messageInitialized) {
     var emptystr = "";
     for (var i = 0; i < maxlength; i++) {
       emptystr = emptystr.concat("_");
     }
     message1 = emptystr;
     message2 = emptystr;
+    messageInitialized = true;
   } else {
     message1 = document.getElementById("message1").value;
     message2 = document.getElementById("message2").value;
@@ -214,8 +208,6 @@ function defaultText() {
 
 function setup() {
   defaultText();
-  resetMessage1();
-  resetMessage2();
   updateXORTable();
   updateCribTable();
   updateSliderPos();
