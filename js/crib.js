@@ -172,7 +172,7 @@ function resetMessage2() {
   document.getElementById("message2").value = "Message 2 Results";
 }
 
-function correctSegment() {
+function correctSegment(messageNumber) {
   maxlength = document.getElementById("ciphertextxorresult").value.length / 2;
   cribsegment = document.getElementById("cribword").value;
 
@@ -190,8 +190,18 @@ function correctSegment() {
     var message1 = document.getElementById("message1").value;
     var message2 = document.getElementById("message2").value;
   }
-  message1 = message1.substring(0, sliderIndex) + segment + message1.substring(sliderIndex + segment.length, maxlength);
-  message2 = message2.substring(0, sliderIndex) + cribsegment + message2.substring(sliderIndex + segment.length, maxlength);
+
+  switch (messageNumber) {
+    case 1:
+      message1 = message1.substring(0, sliderIndex) + segment + message1.substring(sliderIndex + segment.length, maxlength);
+      message2 = message2.substring(0, sliderIndex) + cribsegment + message2.substring(sliderIndex + segment.length, maxlength);
+      break;
+
+    case 2:
+      message1 = message1.substring(0, sliderIndex) + cribsegment + message1.substring(sliderIndex + segment.length, maxlength);
+      message2 = message2.substring(0, sliderIndex) + segment + message2.substring(sliderIndex + segment.length, maxlength);
+      break;
+  }
 
   document.getElementById("message1").value = " ";
   document.getElementById("message2").value = " ";
