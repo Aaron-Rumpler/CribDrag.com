@@ -99,6 +99,7 @@ li a:visited {
   border-radius: 3px;
   width: 20px;
   font-family: 'Source Code Pro', monospace;
+  text-align: center;
 }
 
 .xor-ciphers-table {
@@ -110,6 +111,7 @@ li a:visited {
   border-radius: 3px;
   width: 20px;
   font-family: 'Source Code Pro', monospace;
+  text-align: center;
 }
 
 .result-table {
@@ -122,6 +124,7 @@ li a:visited {
   border-radius: 3px;
   width: 20px;
   font-family: 'Source Code Pro', monospace;
+  text-align: center;
 }
 
 .box {
