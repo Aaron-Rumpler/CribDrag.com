@@ -17,7 +17,17 @@ function updateKeyHex() {
 }
 
 function updateXORResult() {
-  document.getElementById("otpresult").value = xor_hex(document.getElementById("messagehex").value, document.getElementById("keyhex").value);
+  var messageHex = document.getElementById("messagehex").value;
+  var keyHex = document.getElementById("keyhex").value;
+  
+  // Check if key is too short
+  if (keyHex.length < messageHex.length) {
+    document.getElementById("otpresult").value = "Error: Key is too short. The key must be at least as long as the message.";
+    document.getElementById("otpresult").style.color = "red";
+  } else {
+    document.getElementById("otpresult").value = xor_hex(messageHex, keyHex);
+    document.getElementById("otpresult").style.color = ""; // Reset to default color
+  }
 }
 
 function ascii_to_hex(str) {
