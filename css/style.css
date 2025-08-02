@@ -131,7 +131,8 @@ li a:visited {
   height: 27px;
   float: left;
   margin: 0 auto;
-  margin-top: -30px;
+  margin-top: -28px;
+  margin-left: 1px;
   background-color: #50505033;
   border: 1px solid #b9b9b9;
   width: auto;
