@@ -6,8 +6,9 @@ html {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 body {
-    min-height: 100% !important;
+  min-height: 100% !important;
   margin: 0px;
   padding: 0px;
   font-family: 'Open Sans', sans-serif;
@@ -19,9 +20,9 @@ body {
   background-color: #536169;
   padding-left: 20%;
   padding-right: 20%;
-  -webkit-box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
-  -moz-box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
-  box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
+  box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
 }
 
 .header img {
@@ -83,9 +84,9 @@ li a:visited {
   border-radius: 3px;
   font-size: 14px;
   color: #6d6d6d;
-  -webkit-box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
-  -moz-box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
-  box-shadow: 0px 0px 2px 0px rgba(143,143,143,0.47);
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
+  box-shadow: 0px 0px 2px 0px rgba(143, 143, 143, 0.47);
 }
 
 .text-table {
@@ -250,7 +251,8 @@ li a:visited {
   position: absolute;
   z-index: 1;
 }
-.copy-image-1:hover .copy-to-clipboard{
+
+.copy-image-1:hover .copy-to-clipboard {
   visibility: visible;
 }
 
@@ -267,7 +269,8 @@ li a:visited {
   position: absolute;
   z-index: 1;
 }
-.copy-image-2:hover .copy-to-clipboard{
+
+.copy-image-2:hover .copy-to-clipboard {
   visibility: visible;
 }
 
@@ -385,7 +388,7 @@ input[type=text]:focus {
 
 .crib-drag-form-left {
   width: 100%;
-  float:left;
+  float: left;
   padding-right: 10px;
   width: calc(100% - 10px);
 }
@@ -465,40 +468,50 @@ input[type=text]:focus {
 
 }
 
-.otp-xor-results input{
+.otp-xor-results input {
   background-color: #efefef;
 }
+
 .tg {
-  border-collapse:collapse;
-  border-spacing:0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
 .tg td {
-  font-size:14px;
-  padding:10px 5px;
-  border-style:solid;
-  border-width:1px;
-  overflow:hidden;
-  word-break:normal;
-  border-color:black;
+  font-size: 14px;
+  padding: 10px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+  border-color: black;
 }
+
 .tg th {
-  font-size:14px;
-  font-weight:normal;
-  padding:10px 5px;
-  border-style:solid;
-  border-width:1px;
-  overflow:hidden;
-  word-break:normal;
-  border-color:black;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 10px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+  border-color: black;
 }
-.tg .tg-xldj{
-  border-color:inherit;text-align:left
+
+.tg .tg-xldj {
+  border-color: inherit;
+  text-align: left
 }
-.tg .tg-0lax{
-  text-align:left;vertical-align:top
+
+.tg .tg-0lax {
+  text-align: left;
+  vertical-align: top
 }
-.tg .tg-0pky{
-  border-color:inherit;text-align:left;vertical-align:top
+
+.tg .tg-0pky {
+  border-color: inherit;
+  text-align: left;
+  vertical-align: top
 }
 
 .otp-table {
@@ -508,7 +521,7 @@ input[type=text]:focus {
 .left-table {
   width: 70%;
   display: inline-block;
-  float:left;
+  float: left;
 }
 
 .right-table {
