@@ -1,33 +1,7 @@
-var grid_size = (26);
-var ciphersize = 50;
-var cribsize = 5;
+var grid_size = 26;
 var screenSize = $(window).width();
 var sliderIndex = 0;
-var currentX = 0;
 var rightBound = document.getElementById('xor-ciphers-table').offsetWidth - document.getElementById('text-table').offsetWidth;
-
-
-function cribdrag() {
-  //var cribword = ascii_to_hex(document.getElementById("cribword").value);
-  console.log(xor_hex("3b101c091d53320c000910", "071d154502010a04000419"));
-  //console.log(cribword);
-}
-
-function copyMessage1() {
-  var copyText = document.getElementById("pwd_spn");
-  var textArea = document.createElement("textarea");
-  textArea.value = copyText.textContent;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("Copy");
-  textArea.remove();
-}
-
-function copyMessage2() {
-  var copyText = document.getElementById("message1");
-  copyText.select();
-  document.execCommand("copy");
-}
 
 document.getElementById("ciphertext1").addEventListener('input', function (evt) {
   updateXORTable();
@@ -86,7 +60,6 @@ function updateXORTable() {
   var cipher1 = document.getElementById("ciphertext1").value;
   var cipher2 = document.getElementById("ciphertext2").value;
   var inputHex = xor_hex(cipher1, cipher2);
-  console.log(inputHex);
   for (var i = 0; i < inputHex.length / 2; i++) {
     var row = document.getElementById("xor-ciphers");
     var x = row.insertCell(i);
@@ -174,7 +147,12 @@ $(window).resize(function () {
 function updateSliderPos() {
   rightBound = document.getElementById('xor-ciphers-table').offsetWidth - document.getElementById('text-table').offsetWidth;
   screenSize = $(window).width();
-  $(".box").draggable({containment: [(screenSize * .2) + 20, 0, (rightBound + screenSize * .2) + 20, 0]});
+  
+  var contentOffset = $(".content").offset().left;
+  var leftBound = contentOffset + 20; // 20px padding
+  var rightLimit = leftBound + rightBound;
+  
+  $(".box").draggable({containment: [leftBound, 0, rightLimit, 0]});
 }
 
 function resetMessage1() {
@@ -190,18 +168,18 @@ function correctSegment(messageNumber) {
   cribsegment = document.getElementById("cribword").value;
 
   var segment = document.getElementById("crib-result").textContent;
+  var message1, message2;
+  
   if (document.getElementById("message1").value == "Message 1 Results") {
     var emptystr = "";
-    var message1 = "";
-    var message2 = "";
     for (var i = 0; i < maxlength; i++) {
       emptystr = emptystr.concat("_");
     }
     message1 = emptystr;
     message2 = emptystr;
   } else {
-    var message1 = document.getElementById("message1").value;
-    var message2 = document.getElementById("message2").value;
+    message1 = document.getElementById("message1").value;
+    message2 = document.getElementById("message2").value;
   }
 
   switch (messageNumber) {
@@ -216,31 +194,23 @@ function correctSegment(messageNumber) {
       break;
   }
 
-  document.getElementById("message1").value = " ";
-  document.getElementById("message2").value = " ";
-
   document.getElementById("message1").value = message1;
   document.getElementById("message2").value = message2;
 }
 
 function setSliderIndex() {
   var xPos = $(".box").offset().left;
-  sliderIndex = Math.floor((xPos - ((41 + screenSize) * .2)) / grid_size);
-}
-
-function setResult() {
-
+  var contentOffset = $(".content").offset().left;
+  sliderIndex = Math.floor((xPos - contentOffset) / grid_size);
 }
 
 $(".box")
   .draggable({
     drag: function () {
-      updateSliderPos();
       setSliderIndex();
       updateResultTable();
       selectBruteRow(sliderIndex);
     },
-    containment: [(screenSize * .2) + 20, 0, (rightBound + screenSize * .2) + 20, 0],
     axis: "x",
     grid: [grid_size, grid_size]
   })
