@@ -134,23 +134,36 @@ function updateBruteForce() {
   for (var i = 0; i < maxlength - (cribhex.length / 2) + 1; i++) {
     result = xor_hex(cipherhex.substring(((i) * 2), ((i) * 2) + cribhex.length), cribhex);
     var spacing = "";
-    for (var j = 0; j < (cribhex.length / 2) * i * 2; j++) {
+    for (var j = 0; j < i; j++) {
       spacing = spacing.concat("&nbsp;");
     }
-    var bruteResults = "Position [" + (i + 1) + "]: " + spacing + hex_to_ascii(result);
     var row = table.insertRow(i);
-    var cell1 = row.insertCell(0);
-    cell1.innerHTML = bruteResults;
+    
+    // Add position index column
+    var positionCell = row.insertCell(0);
+    positionCell.innerHTML = i + 1;
+    positionCell.className = "position-index";
+    
+    // Add result column
+    var resultCell = row.insertCell(1);
+    resultCell.innerHTML = spacing + hex_to_ascii(result);
   }
 }
 
 function selectBruteRow(index) {
-  var row = document.getElementById("brute-results-table").getElementsByTagName("td");
-  if (!row[index].classList.contains("highlight-td")) {
-    for (var i = 0; i < row.length; i++) {
-      row[i].classList.remove('highlight-td');
+  var rows = document.getElementById("brute-results-table").getElementsByTagName("tr");
+  var cells = rows[index].getElementsByTagName("td");
+  
+  if (!cells[0].classList.contains("highlight-td") || !cells[1].classList.contains("highlight-td")) {
+    // Remove highlight from all cells in all rows
+    var allCells = document.getElementById("brute-results-table").getElementsByTagName("td");
+    for (var i = 0; i < allCells.length; i++) {
+      allCells[i].classList.remove('highlight-td');
     }
-    row[index].classList.toggle("highlight-td");
+    
+    // Highlight both cells in the selected row
+    cells[0].classList.add("highlight-td");
+    cells[1].classList.add("highlight-td");
   }
 }
 

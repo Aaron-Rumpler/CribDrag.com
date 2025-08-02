@@ -422,6 +422,12 @@ input[type=text]:focus {
   background-color: #cfcfcf;
 }
 
+.position-index {
+  width: 50px;
+  text-align: right;
+  font-weight: bold;
+}
+
 .content-info {
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 10px;
