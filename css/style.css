@@ -441,17 +441,16 @@ input[type=text]:focus {
 
 .brute-results {
   width: 100%;
-  float: right;
   display: inline-block;
   margin-top: 20px;
   clear: both;
+  overflow-x: scroll;
 }
 
 .brute-results-table {
   color: #6d6d6d;
   background-color: #efefef;
   width: 100%;
-  float: right;
   resize: none;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
