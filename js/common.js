@@ -1,7 +1,10 @@
 function ascii_to_hex(str) {
+  const encoder = new TextEncoder();
+  const utf8Bytes = encoder.encode(str);
+
   var arr1 = [];
-  for (var n = 0, l = str.length; n < l; n++) {
-    var hex = Number(str.charCodeAt(n)).toString(16);
+  for (var i = 0; i < utf8Bytes.length; i++) {
+    var hex = utf8Bytes[i].toString(16).padStart(2, '0');
     arr1.push(hex);
   }
   return arr1.join('');
@@ -9,10 +12,14 @@ function ascii_to_hex(str) {
 
 function hex_to_ascii(str) {
   var hex = str.toString(); // force conversion
-  var result = '';
-  for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
-    result += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-  return result;
+
+  var bytes = new Uint8Array(Math.floor(hex.length / 2));
+  for (var i = 0; i < bytes.length; i++) {
+    bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+  }
+
+  const decoder = new TextDecoder('utf-8');
+  return decoder.decode(bytes);
 }
 
 function xor_hex(cipher1, cipher2) {
