@@ -301,4 +301,3 @@ function setup() {
 }
 
 setup();
-new ClipboardJS('.copy-image');
