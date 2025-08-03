@@ -165,6 +165,7 @@ li a:visited {
   border: 1px solid #e6e6e6;
   display: inline-block;
   border-radius: 3px;
+  clear: both;
 }
 
 .crib-result {
@@ -297,51 +298,62 @@ li a:visited {
 }
 
 .messages {
-  margin-top: 20px;
-  display: inline-block;
+  display: flow-root;
+  width: 100%;
   margin-bottom: 100px;
 }
 
 .message1 {
-  display: block-inline;
+  display: inline-block;
   float: left;
   width: 50%;
   height: 90px;
+  padding-right: 10px;
+  box-sizing: border-box;
 }
 
 .message2 {
-  display: block-inline;
+  display: inline-block;
   float: left;
   width: 50%;
   height: 90px;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 .message-textarea-left {
   color: #6d6d6d;
   background-color: #efefef;
-  width: 95%;
+  width: 100%;
   float: left;
   resize: none;
   padding: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   font-family: 'Source Code Pro', monospace;
+  box-sizing: border-box;
 }
 
 .message-textarea-left:disabled {
   background-color: #efefef;
 }
 
+.message1 label, .message2 label {
+  display: block;
+  margin-bottom: 8px;
+}
+
 .message-textarea-right {
   color: #6d6d6d;
   background-color: #efefef;
-  width: 95%;
+  width: 100%;
   float: right;
   resize: none;
   padding: 5px;
   border: 1px solid #e6e6e6;
   border-radius: 4px;
   font-family: 'Source Code Pro', monospace;
+  box-sizing: border-box;
 }
 
 .message-textarea-right:disabled {
@@ -410,6 +422,7 @@ input[type=text]:focus {
 .crib-drag-form {
   height: 150px;
   border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 10px;
 }
 
 .crib-drag-form-left {
@@ -431,6 +444,7 @@ input[type=text]:focus {
   float: right;
   display: inline-block;
   margin-top: 20px;
+  clear: both;
 }
 
 .brute-results-table {
