@@ -221,34 +221,49 @@ function updateSliderPos() {
 }
 
 function correctSegment(messageNumber) {
-  maxlength = document.getElementById("ciphertextxorresult").value.length / 2;
-  cribsegment = document.getElementById("cribword").value;
-
-  var segment = document.getElementById("crib-result").textContent;
-  var message1, message2;
+  // Calculate the number of bytes in the XOR result (each byte is 2 hex characters)
+  const maxByteLength = document.getElementById("ciphertextxorresult").value.length / 2;
+  const cribsegment = document.getElementById("cribword").value;
+  const segment = document.getElementById("crib-result").textContent;
   
+  let message1, message2;
+  
+  // Initialize messages if needed
   if (!messageInitialized) {
-    var emptystr = "";
-    for (var i = 0; i < maxlength; i++) {
-      emptystr = emptystr.concat("_");
-    }
+    // Use '•' (bullet) character to represent unknown characters instead of underscore
+    // This allows distinguishing between actual underscores and unknown characters
+    const emptystr = "•".repeat(maxByteLength);
     message1 = emptystr;
     message2 = emptystr;
     messageInitialized = true;
   } else {
     message1 = document.getElementById("message1").value;
     message2 = document.getElementById("message2").value;
+    
+    // If cipher text length has changed, adjust message lengths
+    const currentLength = message1.length;
+    if (currentLength < maxByteLength) {
+      // Add unknown characters if message is too short
+      const additionalChars = "•".repeat(maxByteLength - currentLength);
+      message1 += additionalChars;
+      message2 += additionalChars;
+    } else if (currentLength > maxByteLength) {
+      // Truncate if message is too long
+      message1 = message1.substring(0, maxByteLength);
+      message2 = message2.substring(0, maxByteLength);
+    }
   }
 
+  // Update the appropriate message with the decrypted segment
   switch (messageNumber) {
     case 1:
-      message1 = message1.substring(0, sliderIndex) + segment + message1.substring(sliderIndex + segment.length, maxlength);
-      message2 = message2.substring(0, sliderIndex) + cribsegment + message2.substring(sliderIndex + segment.length, maxlength);
+      message1 = message1.substring(0, sliderIndex) + segment + message1.substring(sliderIndex + segment.length);
+      message2 = message2.substring(0, sliderIndex) + cribsegment + message2.substring(sliderIndex + cribsegment.length);
       break;
 
     case 2:
-      message1 = message1.substring(0, sliderIndex) + cribsegment + message1.substring(sliderIndex + segment.length, maxlength);
-      message2 = message2.substring(0, sliderIndex) + segment + message2.substring(sliderIndex + segment.length, maxlength);
+      message1 = message1.substring(0, sliderIndex) + cribsegment + message1.substring(sliderIndex + cribsegment.length);
+      message2 = message2.substring(0, sliderIndex) + segment + message2.substring(sliderIndex + segment.length);
       break;
   }
 
