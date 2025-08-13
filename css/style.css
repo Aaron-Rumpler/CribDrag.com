@@ -499,6 +499,13 @@ input[type=text]:focus {
   border-radius: 4px;
   font-family: 'Source Code Pro', monospace;
   white-space: nowrap;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+}
+
+.brute-results-table td {
+  padding: 2px;
 }
 
 .highlight-td {
@@ -506,10 +513,32 @@ input[type=text]:focus {
   background-color: #cfcfcf;
 }
 
+/* Keep the position-index class for backward compatibility, but it's empty */
 .position-index {
-  width: 50px;
+  /* This class is still used in JavaScript but styling is now handled by the selector below */
+}
+
+/* Use a more specific selector to target the first cell in each row */
+.brute-results-table tr td:first-child {
+  /* Basic styling */
   text-align: right;
   font-weight: bold;
+
+  /* Make it sticky for horizontal scrolling */
+  position: sticky;
+  left: 0;
+  background-color: #efefef;
+  z-index: 1;
+
+  /* Visual separation */
+  border-right: 1px solid #e6e6e6;
+
+  /* Padding that won't be "eaten" */
+  padding: 2px 8px 2px 2px;
+  
+  /* Ensure width is based on content */
+  width: 1%;
+  white-space: nowrap;
 }
 
 .content-info {
